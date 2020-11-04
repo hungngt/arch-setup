@@ -1,0 +1,69 @@
+#! /bin/sh
+
+sxhkd &
+
+###################
+## configuration ##
+###################
+
+## workspace name
+bspc monitor -d I II III IV V VI VII VIII
+
+## common bspwm configuration
+bspc config automatic_scheme spiral
+
+bspc config border_width          2
+bspc config window_gap            10
+bspc config top_padding           0
+bspc config right_padding         0
+bspc config bottom_padding        32
+bspc config left_padding          0
+
+bspc config split_ratio             0.50
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bspc config paddingless_monocle     true
+bspc config single_monocle          true
+bspc config focus_follows_pointer   true
+
+# bspc config border_radius	10
+
+bspc config click_to_focus       true
+bspc config pointer_action1      move
+bspc config pointer_action2      resize_side
+bspc config pointer_action3      resize_corner
+
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+
+# Floating windows
+bspc rule -a Lxappearance state=floating rectangle=720x580+20+20
+bspc rule -a Gpick state=floating rectangle=720x480+20+20
+bspc rule -a mpv state=floating rectangle=960x540+20+20
+bspc rule -a Nitrogen state=floating rectangle=720x480+20+20
+bspc rule -a Gestures state=floating rectangle=960x720+20+20
+bspc rule -a Wpg state=floating rectangle=960x720+20+20
+bspc rule -a Pavucontrol state=floating rectangle=720x480+20+20
+bspc rule -a Gufw.py state=floating rectangle=480x720+20+20
+bspc rule -a Nm-connection-editor state=floating rectangle=720x480
+
+killall -9 sxhkd mpd nitrogen polybar xautolock dunst compton polkit-gnome-au \
+
+nitrogen --restore &
+picom -b --experimental-backends --backend glx &
+sxhkd &
+# /home/hung/.local/bin/lemonbar/lemon-launcher &
+/home/hung/.config/polybar/launch.sh &
+# /home/hung/.config/yabar/launch.sh &
+xrdb ~/.Xresources &
+ibus-daemon -drx &
+nm-applet &
+libinput-gestures-setup start &
+xsetroot -cursor_name left_ptr &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# pactl set-sink-volume 0 30%
+light -I &
+dunst &

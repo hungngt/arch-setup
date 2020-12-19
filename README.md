@@ -47,7 +47,7 @@ in `/etc/mkinitcpio.conf`
     yay -S libinput-gestures gestures
     libinput-gestures-setup autostart
     libinput-gestures-setup start
-    ## zsh
+## zsh
     sudo pacman -S zsh
     chsh -s /usr/bin/zsh/
 logout
